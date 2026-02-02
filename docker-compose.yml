@@ -1,0 +1,30 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: genai_api
+    ports:
+      - "8000:8000"
+    env_file:
+      - C:\projects\genairag\genai-rag-platform\.env.example
+
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: postgres:15
+    container_name: genai_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: genai_platform
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7
+    container_name: genai_redis
+    ports:
+      - "6379:6379"
