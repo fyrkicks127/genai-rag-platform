@@ -4,4 +4,7 @@ router = APIRouter()
 
 @router.get("/")
 def health_check():
-    return {"status": "ok", "service": "genai-rag-platform"}
+    result = {}
+    result['status'] = 'Ok'
+    result['service'] = 'Genai-Rag-Platform'
+    return result
